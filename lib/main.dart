@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart'; // import debug的package。
 
 void main() {
-  debugPaintSizeEnabled = true; // 解析 debug的畫面。
-  runApp(const MyApp());
+  runApp(const MyApp()); // 改為 MyApp，而不是 MyHomePage
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,34 +20,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// 了解 DecoratedBox的用法：
-// 了解 row的用法
-
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.red,
-              width: 2,
+      body: Center(
+        child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              gradient: const LinearGradient(
+                colors: [Colors.blue, Colors.red],
+              ),
             ),
-          ),
-          child: const Row(
-            children: [
-              Text("A"),
-              SizedBox(width: 50),
-              Text("B"),
-              SizedBox(width: 50),
-              Text("C"),
-              SizedBox(width: 50),
-            ],
-          ),
-        ),
+            child: const Text(
+              "Hello world",
+              style: TextStyle(fontSize: 30, color: Colors.white),
+            )),
       ),
     );
   }
